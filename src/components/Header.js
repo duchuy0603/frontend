@@ -1,7 +1,7 @@
 import React from 'react'
 import Nav from './Nav';
 import Search from './Search';
-import User from './User';
+import UserAdmin from './UserAdmin';
 import Slide from './Slide';
 const Header = () => {
   return (
@@ -21,7 +21,7 @@ const Header = () => {
             
           
              
-           <User/>
+           <UserAdmin/>
             </div>
           </div>
         </nav>

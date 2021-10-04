@@ -27,7 +27,7 @@ const Navmem = () => {
             </li> */}
     
             <li className="nav-item admin">
-                <Link className="nav-link" to="/product">page</Link>
+                <Link className="nav-link" to="/product">Page</Link>
             </li>
        
             

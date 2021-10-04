@@ -42,21 +42,29 @@ const Page = () => {
         }
     }, [])
     const [change, setchange] = useState(1);
+    
 
     const handlechange = (event, value) => {
-        setchange(value)
+    
+           
+            setchange(value)
+           
+        
     }
 
 
     const [page, setpage] = useState([]);
+  
     useEffect(() => {
         try {
             const fetchpage = async () => {
+                
                 const respone = await fetch(`http://localhost:4000/api/news/${change}`)
 
                 const responejson = await respone.json()
 
                 setpage(responejson);
+              
             }
             fetchpage();
         } catch (error) {
@@ -69,10 +77,13 @@ const Page = () => {
     return (
         <div>
             <div className="row cate">
-                <div className="col-md-3">
+            <div className="col-md-3 danhmuc">
+                <h4>Danh Mục</h4>
                     {listcate.map((btn, index) => (
-
-                        <NavLink className="Link" to={`/category/${btn._id}`}><button className="form-control mt-1 btn-menu" key={index}>{btn.name}</button></NavLink>
+                           
+                        
+                           <NavLink activeClassName className="Link" to={`/category/${btn._id}`}><div className="itemlist" key={index}>{btn.name}</div></NavLink> 
+                        
                     ))}
                 </div>
 
@@ -84,9 +95,9 @@ const Page = () => {
 
 
 
-                            <div className="col-md-3  col-sm-6 col-12  " key={index}>
+                            <div className="col-md-3  col-sm-4 col-xs-12 respro " key={index}>
                                 <div className="pro">
-                                    <NavLink className="Link" to={"/product/" + product._id}><img src={"http://localhost:4000/api/products/photo/" + product._id} height="250px" width="230"></img></NavLink>
+                                    <NavLink className="Link" to={"/product/" + product._id}><img src={"http://localhost:4000/api/products/photo/" + product._id} height="250px" width="230px"></img></NavLink>
                                     <div className="product-name">{product.name}</div>
                                     <Link className="Link" to=""><span>{product.price}$</span></Link>
 

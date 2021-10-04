@@ -10,7 +10,7 @@ const UserApi = {
         return axiosClient.update(url, data);
     },
    
-    add(user) {
+    signup(user) {
         console.log(user)
         const url = `/signup`;
         return axiosClient.post(url, user);

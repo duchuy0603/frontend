@@ -3,9 +3,10 @@ import WebsiteLayout from '../../layouts/website'
 import { API } from '../../config'
 import { useHistory } from 'react-router'
 import { useForm } from 'react-hook-form'
-import { authenticate ,signin} from '../../auth'
+import { authenticate, signin } from '../../auth'
 import { Link } from 'react-router-dom'
-const role=localStorage.getItem("role");
+import UserApi from '../../api/UserApi'
+
 
 const Signin = () => {
     let history = useHistory();
@@ -22,7 +23,16 @@ const Signin = () => {
         })
             .then(respone => respone.json())
             .catch(error => console.log(error))
-    }
+    } 
+    // const signin=async(user)=>{
+    //     try {
+    //         await UserApi.signin(user)
+    //         .then(respone => respone.json())
+    //                 .catch(error => console.log(error))
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
 
 
@@ -36,11 +46,11 @@ const Signin = () => {
                     seterror(dataUser.error);
                     setloading(false);
                 } else {
-                    authenticate(dataUser,()=>{
-                        if(dataUser.user.role==1){
-                            history.push('/admin/dashboard')
+                    authenticate(dataUser, () => {
+                        if (dataUser.user.role == 1) {
+                            history.push('/admin/search')
                         }
-                        if(dataUser.user.role==0){
+                        if (dataUser.user.role == 0) {
                             history.push('/')
                         }
                     })
@@ -55,16 +65,16 @@ const Signin = () => {
         </div>
 
     }
-    const ShowLoading=()=>{
-return loading &&<div className="alert alert-info">
-    <h2>...loading</h2>
-</div>
+    const ShowLoading = () => {
+        return loading && <div className="alert alert-info">
+            <h2>...loading</h2>
+        </div>
     }
     const SigninForm = () => {
 
         return (
 
-            <form onSubmit={handleSubmit(onSubmit)} className="dk pd-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="dk ">
                 <h1 className="px-6" >Đăng Nhập</h1>
 
                 <div className="mb-3">
@@ -72,9 +82,10 @@ return loading &&<div className="alert alert-info">
                     <input type="text" className="form-control"
                         name="" id="email"
                         aria-describedby="helpId" placeholder=""
-                        {...register('email')}
+                        {...register('email') }
                     />
                 </div>
+             
                 <div className="mb-3">
                     <label className="form-label" htmlFor="password" >password</label>
                     <input type="password" className="form-control"
@@ -86,9 +97,11 @@ return loading &&<div className="alert alert-info">
                 </div>
 
                 <button className="btn btn-primary">Signin</button>
-                <br/>
+                <div className="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+
+                <br />
                 <span>Bạn chưa có tài khoản  <Link to="/user">Đăng kí</Link></span>
-                
+
             </form>
 
         )

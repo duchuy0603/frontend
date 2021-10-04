@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { addCart } from '../../reduxcart/slide/Cartslide';
+
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useCart } from 'react-use-cart';
@@ -39,6 +39,11 @@ const data={
   name:product.name,
   price:product.price
 }
+const Addcart=()=>{
+  add(data)
+  history.push('/cart')
+}
+
 
 
 //   const [comment ,setcomment]=useState([])
@@ -70,11 +75,11 @@ const data={
       {/* {handleSubmit(onSubmit({product}))} */}
       <div className=" row container" key={product._id} >
         <div className="row detail ">
-          <div className="col-md-8 detail-image">
+          <div className="col-md-7 detail-image">
 
-            <NavLink className="Link" to={""}><img src={"http://localhost:4000/api/products/photo/" + product._id} height="550px" width="430"></img></NavLink>
+           <img src={"http://localhost:4000/api/products/photo/" + product._id} height="550px" width="430"></img>
           </div>
-          <div className=" col-md-4  " >
+          <div className=" col-md-5  " >
 
             <h2>{product.name}</h2>
             <h4>Mô Tả:</h4>
@@ -83,18 +88,18 @@ const data={
             <h4>Giá Bán:</h4>
             <NavLink className="Link" to=""><span className="price">{product.price}$</span></NavLink>
             <br />
-            <button className="btn btn-danger btn-cart" id="btn-cart" onClick={() =>(add(data))}  > Mua Ngay</button>
+            <button className="btn btn-danger btn-cart" id="btn-cart" onClick={() =>Addcart()}  > Mua Ngay</button>
           </div>
         </div>
     
    
 
       </div>
-      <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0" nonce="RAODmfal"></script>
-<di>
+      
+<div>
+  <br/>
 <div class="fb-comments" data-href="http://localhost:3000/" data-width="" data-numposts="5"></div>
-</di>
+</div>
     </div>
     
 

@@ -12,34 +12,34 @@ import { useParams } from 'react-router-dom';
 
 
 function App() {
-  ///product
-//   const [todos, setTodos] = useState([]);
-//   console.log(todos);
-//   const {id}=useParams
-//   useEffect(() => {
-//     console.log("sau");
-//     // didmount
-//   const listtodo = async () => {
+
+  // const [todos, setTodos] = useState([]);
+  // console.log(todos);
+  // const {id}=useParams
+  // useEffect(() => {
+  //   console.log("sau");
+  //   // didmount
+  // const listtodo = async () => {
   
-//     try {
-//       // const { data: products } = await ProductApi.getAll();
-//       const {data:product}=await ProductApi.getAll();
+  //   try {
+  //     // const { data: products } = await ProductApi.getAll();
+  //     const {data:product}=await ProductApi.getAll();
     
-//       setTodos(product);
+  //     setTodos(product);
   
-//     } catch (error) {
-//       console.log(error)
-//     };
-//   }
-//   listtodo();
-//   return ()=>{
-//     console.log("truoc");
-//     setTodos(null);
+  //   } catch (error) {
+  //     console.log(error)
+  //   };
+  // }
+  // listtodo();
+  // return ()=>{
+  //   console.log("truoc");
+  //   setTodos(null);
    
     
-//     };
-//      // didupdate
-//   }, [])
+  //   };
+  //    // didupdate
+  // }, [])
 
 //   const onHandleAdd = async (product,userId) => {
 //     try {
@@ -81,22 +81,8 @@ function App() {
 //   //            setTodos(newProduct)
 
 //   // }
-//   ///category
-//   const [cate, setcate] = useState([]);
-//   useEffect(() => {
-//     const listcategory = async () => {
-//       try {
-//         const { data: categorys } = await CategoryApi.getAll();
-//         console.log(categorys)
-       
-//         setcate(categorys);
-//        // localStorage.setItem('category',JSON.stringify(categorys));
-//       } catch (error) {
-//         console.log(error)
-//       };
-//     }
-//     listcategory();
-//   }, [])
+  ///category
+
 //   const onHandleAddcate = async (category, userId) => {
 //     try {
 //       await CategoryApi.add(category, userId);
@@ -143,7 +129,7 @@ function App() {
   return (
     <div className="container">
       <Routers 
-    
+ 
 
         />
     </div>

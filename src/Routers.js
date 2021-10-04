@@ -29,10 +29,10 @@ import { CartProvider } from 'react-use-cart';
 // import SearchPro from './components/SearchPro';
 
 const routers = (props => (
-  //forceRefresh de reload lai
-  <Router forceRefresh >
+  
+  <Router  >
     <Switch>
-      {/* admin layout */}
+    
       <Route exact path="/admin/:path/:id?">
         <AdminLayout>
           <Switch>
@@ -98,10 +98,7 @@ const routers = (props => (
             <Route exact path="/user" >
               <Signup />
             </Route>
-            <Route exact path="/search" >
-              <Search {...props} />
-            </Route>
-          
+   
 
             <Route exact path="/cart" children={<Cart/>} >
               <Cart {...props} />

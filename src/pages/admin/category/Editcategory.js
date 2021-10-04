@@ -15,7 +15,7 @@ const Editcategory = () => {
             setlistcate(data);
         }
         listcate();
-    }, [])
+    }, [listcate])
     const onEditCate=async(id,userId,cate)=>{
       const{data}=  await CategoryApi.update(id,userId,cate);
     
@@ -31,12 +31,13 @@ const Editcategory = () => {
       
         history.push("/admin/listcate");
        
+       
     }
    
  
     return (
         <div>
-            <h2>updateCatgory</h2>
+            <h2>Edit Category</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                     <label for="">name</label>
@@ -44,7 +45,7 @@ const Editcategory = () => {
                     <input type="text"
                         className={`form-control ${errors.name ? "boder border-danger" : ""}`}
                     placeholder={categorys?.name} id="" 
-                        {...register('name', { required: true })}
+                        {...register('name', { required: true , pattern: /^[.*\S+.*]/ })}
                     />
                     {errors.name && <span className="text-warning">bạn chưa nhập tên</span>}
                     <button type="submit" className="btn btn-primary">edit</button>

@@ -1,18 +1,18 @@
-import React, { useCallback, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useEffect } from 'react'
-import { v4 as uuidv4 } from 'uuid'
-import ProductApi from '../../../api/ProductApi'
-import CategoryApi from '../../../api/CategoryApi'
+import React, { useCallback, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useEffect } from 'react';
+import ProductApi from '../../../api/ProductApi';
+import CategoryApi from '../../../api/CategoryApi';
 function AddProduct() {
     let history = useHistory();
     let userId = localStorage.getItem("id");
-    const [listcate,setlistcate]=useState([]);
+    const name=document.querySelector("#product-name")
+    const [listcate, setlistcate] = useState([]);
     useEffect(() => {
-      const listcate=async()=>{
-          const {data}=await CategoryApi.getAll();
-          setlistcate(data);
+        const listcate = async () => {
+            const { data } = await CategoryApi.getAll();
+            setlistcate(data);
         }
         listcate();
     }, [])
@@ -24,20 +24,20 @@ function AddProduct() {
             setproduct(data);
         }
         listpro();
-    }, [])
-    const onAdd=async(data,userId)=>{
-   try {
-    const {data:products}=await ProductApi.add(data,userId);
-   
-   
-    setproduct([
-        ...product,
-        products
-    ])
-   } catch (error) {
-       console.log(error);
-       
-   }
+    }, [product])
+    const onAdd = async (data, userId) => {
+        try {
+            const { data: products } = await ProductApi.add(data, userId);
+
+
+            setproduct([
+                ...product,
+                products
+            ])
+        } catch (error) {
+            console.log(error);
+
+        }
     }
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -52,7 +52,7 @@ function AddProduct() {
         add.append("categoryId", data.categoryId);
         add.append("shipping", true);
         onAdd(add, userId);
-        history.push('/search')
+        history.push('/admin/search')
     }
     return (
         <div>
@@ -62,7 +62,7 @@ function AddProduct() {
                 <input
                     type="text"
                     id="product-name"
-                    {...register('name', { required: true })}
+                  {...register('name', ({ required: true , pattern: /^[.*\S+.*]/ }))}
                     className={`form-control ${errors.name ? "border border-danger" : ""}`}
 
                 />
@@ -134,7 +134,7 @@ function AddProduct() {
                     <option value="còn hàng">Còn hàng</option>
                     <option value="hết hàng">Hết hàng</option>
                 </select>
-        
+
 
                 <br />
 

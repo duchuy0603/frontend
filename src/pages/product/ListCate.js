@@ -13,7 +13,7 @@ function ListCate() {
         setlistcate(data);
       }
       listcate();
-  }, [])
+  }, [listcate])
   const onRemovecate=async(id,userId)=>{
      await CategoryApi.remove(id,userId);
      const newdata=listcate.filter(x=>x._id!==id)

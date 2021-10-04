@@ -7,17 +7,6 @@ import { ReactDOM } from 'react-dom';
 
 const Nav = () => {
     var user=localStorage.getItem('role');
-   
-// const admin=useRef();
-  
-//     if(user==0){
-//      admin.current.style.display="none";
-//         }else if(user==1){
-//             admin.current.style.display="block";
-//         }
-    
-  
-   
     return (
         <ul className="navbar-nav me-auto mb-2 mb-md-0">
             {/* <li className="nav-item">

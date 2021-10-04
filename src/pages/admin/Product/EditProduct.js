@@ -19,7 +19,7 @@ function EditProduct() {
     } catch (error) {
         console.log(error);
     }
-    }, [])
+    }, [product])
     const onEdit=async(id,userId,product)=>{
      const{data}=   await ProductApi.update(id,userId,product);
       
@@ -53,7 +53,7 @@ function EditProduct() {
         onEdit(id,userId, add);
 
 
-        history.push('/search')
+        history.push('/admin/search')
 
     }
 
@@ -68,11 +68,11 @@ function EditProduct() {
                     placeholder={products?.name}
                     id="product-name"
 
-                    {...register('name', { required: true})}
+                    {...register('name', { required: true, pattern: /^[.*\S+.*]/ })}
                     className={`form-control ${errors.name ? "border border-danger" : ""}`}
                 //   value={products.name}
                 />
-                {errors.name && <span className="text-warning">bạn chưa nhập tên</span>}
+                {errors.name && <span className="text-warning">bạn chưa nhập tên hoặc nhập chưa đúng định dạng</span>}
                 <label>Price</label>
 
                 <input

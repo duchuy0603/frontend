@@ -37,11 +37,20 @@ const result=products.filter(x=>x.categoryId==id);
 
     return (
         <div>
-            <div className="row">
-            <div className="col-md-3">
+            <div className="row cate">
+            {/* <div className="col-md-3">
                     {listcate.map((btn, index) => (
 
                         <NavLink className="Link" to={`/category/${btn._id}`}><button className="form-control mt-1 btn-menu" key={index}>{btn.name}</button></NavLink>
+                    ))}
+                </div> */}
+                    <div className="col-md-3 danhmuc">
+                <h4>Danh Mục</h4>
+                    {listcate.map((btn, index) => (
+                           
+                        
+                           <NavLink activeClassName className="Link mt-1" to={`/category/${btn._id}`}><div className="itemlist" key={index}>{btn.name}</div></NavLink> 
+                        
                     ))}
                 </div>
                 <div className="col-md-9">
