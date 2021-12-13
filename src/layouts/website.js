@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 const WebsiteLayout = ({ children }) => {
     return (
         <div>
-            <Headermem />
+   
            <body>
        
            { children }

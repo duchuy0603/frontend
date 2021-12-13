@@ -26,15 +26,13 @@ export const signup = (user) => {
 
         export const authenticate=(data,next)=>{
             if(typeof window!== 'undefined'){
+                localStorage.setItem("datauser",data.user)
                 localStorage.setItem("id", data.user._id)
                 localStorage.setItem("role", data.user.role)
                 localStorage.setItem("name", data.user.name)
                 localStorage.setItem("token", data.token)
-                localStorage.setItem("email", data.user.email)
-  
+                localStorage.setItem("email", data.user.email)  
                 next();
             }
         }
-    
-
        

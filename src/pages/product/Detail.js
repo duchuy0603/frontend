@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useCart } from 'react-use-cart';
 import ProductApi from '../../api/ProductApi';
-import CommentApi from '../../api/comment';
+import Headermem from '../../components/Headermem';
 import {add,total,get,list} from 'cart-localstorage'
 
 const ProductDetailPage = () => {
@@ -16,10 +16,8 @@ const ProductDetailPage = () => {
   const dispath=useDispatch();
   const name = localStorage.getItem("name")
   let userId = localStorage.getItem("id")
-  const { addItem } = useCart();
 
-  const { register, handleSubmit, formState: { errors } } = useForm()
-
+  
 
 
   const [product, setproduct] = useState([]);
@@ -33,7 +31,7 @@ const ProductDetailPage = () => {
       }
     }
     detail();
-  }, [])
+  },[])
 const data={
   id:product._id,
   name:product.name,
@@ -73,13 +71,15 @@ const Addcart=()=>{
   return (
     <div>
       {/* {handleSubmit(onSubmit({product}))} */}
+      <Headermem></Headermem>
       <div className=" row container" key={product._id} >
         <div className="row detail ">
-          <div className="col-md-7 detail-image">
+          <div className="col-md-7 col-sm-7 col-12 detail-image">
 
-           <img src={"http://localhost:4000/api/products/photo/" + product._id} height="550px" width="430"></img>
+           <img src={"http://localhost:4000/api/products/photo/" + product._id} height="550px" width="430" alt=''></img>
+        
           </div>
-          <div className=" col-md-5  " >
+          <div className=" col-md-5 col-sm-5 col-12 " >
 
             <h2>{product.name}</h2>
             <h4>Mô Tả:</h4>

@@ -57,6 +57,9 @@ height: 50px;
  
 
 }
+.detail{
+  overflow: hidden;
+}
 Link span{
   text-decoration: none;
   font-size: medium;
@@ -253,6 +256,8 @@ top: -6px;
   
 
 }
+.Link{
+  text-decoration: none;}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */

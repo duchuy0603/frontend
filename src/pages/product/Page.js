@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { NavLink } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import ProductApi from '../../api/ProductApi'
@@ -7,15 +6,13 @@ import CategoryApi from '../../api/CategoryApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { useRef } from 'react'
-
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { ThemeProvider } from '@material-ui/styles'
+import { ThemeProvider } from '@material-ui/styles';
+import { CenterFocusStrong } from '@material-ui/icons';
 
-import { CenterFocusStrong } from '@material-ui/icons'
-
+import Headermem from '../../components/Headermem'
 const Page = () => {
-
     const [product, setproduct] = useState([])
     useEffect(() => {
         try {
@@ -42,48 +39,49 @@ const Page = () => {
         }
     }, [])
     const [change, setchange] = useState(1);
-    
+
 
     const handlechange = (event, value) => {
-    
-           
-            setchange(value)
-           
-        
+
+
+        setchange(value)
+
+
     }
 
 
     const [page, setpage] = useState([]);
-  
+
     useEffect(() => {
         try {
             const fetchpage = async () => {
-                
+
                 const respone = await fetch(`http://localhost:4000/api/news/${change}`)
 
                 const responejson = await respone.json()
 
                 setpage(responejson);
-              
+
             }
             fetchpage();
         } catch (error) {
             console.log(error);
         }
     }, [change])
-    const count=product.length;
-    const total=Math.ceil(count/8)
+    const count = product.length;
+    const total = Math.ceil(count / 8)
 
     return (
         <div>
+            <Headermem></Headermem>
             <div className="row cate">
-            <div className="col-md-3 danhmuc">
-                <h4>Danh Mục</h4>
+                <div className="col-md-3 danhmuc">
+                    <h4>Danh Mục</h4>
                     {listcate.map((btn, index) => (
-                           
-                        
-                           <NavLink activeClassName className="Link" to={`/category/${btn._id}`}><div className="itemlist" key={index}>{btn.name}</div></NavLink> 
-                        
+
+
+                        <NavLink activeClassName className="Link" to={`/category/${btn._id}`}><div className="itemlist" key={index}>{btn.name}</div></NavLink>
+
                     ))}
                 </div>
 
@@ -113,7 +111,7 @@ const Page = () => {
 
 
 
-                    <Stack sx={{color:"red"}}  >
+                    <Stack sx={{ color: "red" }}  >
 
                         <Pagination count={total} page={change} onChange={handlechange} />
                     </Stack>

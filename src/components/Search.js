@@ -4,18 +4,20 @@ import ProductApi from '../api/ProductApi';
 import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+
 var userId = localStorage.getItem('id')
 const history = useHistory
 function Search() {
   const [todos, setTodos] = useState([]);
+
   const { id } = useParams();
-  useEffect(() => {
-    console.log("sau");
+ 
+;  useEffect(() => {
+    
     // didmount
     const listtodo = async () => {
       try {
-        // const { data: products } = await ProductApi.getAll();
+       
         const { data: product } = await ProductApi.getAll();
 
         setTodos(product);

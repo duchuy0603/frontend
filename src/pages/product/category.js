@@ -1,10 +1,10 @@
 import React from 'react'
 import ProductApi from '../../api/ProductApi'
-
 import CategoryApi from '../../api/CategoryApi';
 import { useState,useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+import Headermem from './../../components/Headermem';
 
 const CategoryPage = () => {
 
@@ -37,6 +37,7 @@ const result=products.filter(x=>x.categoryId==id);
 
     return (
         <div>
+            <Headermem/>
             <div className="row cate">
             {/* <div className="col-md-3">
                     {listcate.map((btn, index) => (
@@ -60,7 +61,7 @@ const result=products.filter(x=>x.categoryId==id);
                     <div className="  spcate " key={index}>
                     <NavLink to={"/product/"+ product._id}><img src={"http://localhost:4000/api/products/photo/"+product._id} height="250px" width="230"></img></NavLink>
                   <div className="product-name">{product.name}</div>
-                  <Link  to=""><span className="Link">{product.price}$</span></Link>
+                  <Link className="Link" to=""><span >{product.price}$</span></Link>
                 </div>
             </div>
            

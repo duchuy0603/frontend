@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import ProductApi from '../../../api/ProductApi';
 import CategoryApi from '../../../api/CategoryApi';
+import { Selector } from 'reselect';
+import{Form,Input,Button,selecte} from 'reactstrap'
+import Select from 'react-select'
 function AddProduct() {
     let history = useHistory();
     let userId = localStorage.getItem("id");

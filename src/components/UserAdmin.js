@@ -11,8 +11,7 @@ const UserAdim = () => {
 let history=useHistory()
 var user=localStorage.getItem('user')
  async function dangxuat(){
-    localStorage.removeItem("id")
-    localStorage.removeItem("name")
+  localStorage.clear();
 await UserApi.signout();
 history.push('/user/:id')
   }

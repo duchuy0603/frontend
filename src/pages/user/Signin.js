@@ -2,36 +2,38 @@ import React, { useState } from 'react'
 import WebsiteLayout from '../../layouts/website'
 import { API } from '../../config'
 import { useHistory } from 'react-router'
+
 import { useForm } from 'react-hook-form'
 import { authenticate, signin } from '../../auth'
 import { Link } from 'react-router-dom'
 import UserApi from '../../api/UserApi'
-
-
+import Headermem from '../../components/Headermem'
+import { useDispatch } from 'react-redux'
+import { savetoken } from '../../redux/store/AuthSlide'
 const Signin = () => {
     let history = useHistory();
+    const role=localStorage.getItem('role')
+    // let navigate=useNavigate()
+    const dispath=useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, seterror] = useState("");
     const [loading, setloading] = useState(false);
     const signin = (user) => {
         return fetch(`${API}/signin`, {
             method: "POST",
+            body: JSON.stringify(user),
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user)
+            
         })
             .then(respone => respone.json())
             .catch(error => console.log(error))
     } 
     // const signin=async(user)=>{
-    //     try {
-    //         await UserApi.signin(user)
-    //         .then(respone => respone.json())
-    //                 .catch(error => console.log(error))
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
+       
+            // await UserApi.signin(user)
+     
     // }
 
 
@@ -46,11 +48,18 @@ const Signin = () => {
                     seterror(dataUser.error);
                     setloading(false);
                 } else {
+                        //   dispath(savetoken(dataUser))
+
                     authenticate(dataUser, () => {
-                        if (dataUser.user.role == 1) {
-                            history.push('/admin/search')
+                     
+                        if (role== 1) {
+
+                            setTimeout(() => {
+                                  history.push('/admin/search')
+                            },1000);
+                          
                         }
-                        if (dataUser.user.role == 0) {
+                        else if (dataUser.user.role == 0) {
                             history.push('/')
                         }
                     })
@@ -73,8 +82,10 @@ const Signin = () => {
     const SigninForm = () => {
 
         return (
+<>
+<Headermem/>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="dk ">
+<form onSubmit={handleSubmit(onSubmit)} className="dk ">
                 <h1 className="px-6" >Đăng Nhập</h1>
 
                 <div className="mb-3">
@@ -103,6 +114,7 @@ const Signin = () => {
                 <span>Bạn chưa có tài khoản  <Link to="/user">Đăng kí</Link></span>
 
             </form>
+</>
 
         )
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { v4 as uuidv4 } from 'uuid'
+
 import ProductApi from '../../../api/ProductApi'
 import CategoryApi from '../../../api/CategoryApi'
 function EditProduct() {
@@ -32,13 +32,16 @@ function EditProduct() {
       const listcate=async()=>{
           const {data}=await CategoryApi.getAll();
           setlistcate(data);
+          
         }
         listcate();
+      
     }, [])
+ 
     let history = useHistory();
     let userId=localStorage.getItem('id')
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit,setValue, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         const add = new FormData();
         add.append("name", data.name)
@@ -56,7 +59,17 @@ function EditProduct() {
         history.push('/admin/search')
 
     }
-
+    const setEdit=()=>{
+        setValue("name", products?.name); // 
+        setValue("price", products?.price); // 
+        setValue("photo", products?.photo[0]); // 
+        setValue("description", products?.description); // 
+        setValue("quantity", products?.quantity); // 
+        setValue("status", products?.status); // setValue("price", products.price); // 
+        setValue("categoryId", products?.categoryId); // 
+        setValue("shipping", products?.shipping); // 
+    }
+   
     return (
         <div>
             <h2>EditProduct</h2>
@@ -73,6 +86,7 @@ function EditProduct() {
                 //   value={products.name}
                 />
                 {errors.name && <span className="text-warning">bạn chưa nhập tên hoặc nhập chưa đúng định dạng</span>}
+                <br/>
                 <label>Price</label>
 
                 <input
@@ -86,6 +100,7 @@ function EditProduct() {
                     id="product-price"
                 />
                 {errors.price && <span className="text-warning">giá không hợp lệ</span>}
+                <br/>
                 <label>image</label>
                 <input
                     type="file"
@@ -96,9 +111,9 @@ function EditProduct() {
                     className={`form-control ${errors?.photo ? "border border-danger" : ""}`}
                     id="product-image"
                 />
-                 
+           
                 {errors.photo && <span className="text-warning">chưa có ảnh</span>}
-
+                <br/>
                 <label>description</label>
                 <textarea
 
@@ -110,6 +125,7 @@ function EditProduct() {
                     id="product-description"
                 />
                 {errors.description && <span className="text-warning"></span>}
+                <br/>
                 <label>quantity</label>
                 <input
                     type="number"
@@ -122,12 +138,15 @@ function EditProduct() {
 
                 />
                 {errors.quantity && <span className="text-warning">số lượng không hợp lệ</span>}
+                <br/>
                 <label>Category</label>
                 <select className="form-control"
                     placeholder={products?.categoryId}
                     id="product-category"
                     {...register('categoryId', { required: true })}>
+                         <option value={products?.id}>{products?._id}</option>
                    {listcate.map((x,index)=>(
+                      
                           <option key={index} value={x._id}>{x.name}</option>
                      ))}
                 </select>
@@ -137,9 +156,10 @@ function EditProduct() {
 
                     id="product-status"
                   
-                    placeholder={products?.status}
+                    // placeholder=
                     {...register('status', { required: true })} >
-                    <option value="còn hàng">Còn hàng</option>
+                    <option value={products?.status}>{products?.status}</option>
+                    <option value="hết hàng">Còn hàng</option>
                     <option value="hết hàng">Hết hàng</option>
                 </select>
                 {/* <label>categoryId</label>
@@ -148,6 +168,7 @@ function EditProduct() {
                   <option value="hết hàng">Hết hàng</option>
                 </select> */}
                 <br />
+    
                 <button type="submit" className="btn btn-primary"  >Add</button>
             </form>
         </div>

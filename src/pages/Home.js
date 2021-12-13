@@ -3,13 +3,14 @@ import logo4 from '../image/logo4.jpg'
 import logo5 from '../image/logo5.jpg'
 import logo6 from '../image/logo6.jpg'
 import logo7 from '../image/logo7.jpg'
+import Headermem from '../components/Headermem'
 import { NavLink } from 'react-router-dom'
 const HomePage = (props) => {
     return (
         <div className="container">
  
 
-
+<Headermem/>
   {/* Marketing messaging and featurettes
 ================================================== */}
   {/* Wrap the rest of the page in another container to center all the content. */}

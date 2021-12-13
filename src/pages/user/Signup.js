@@ -3,7 +3,7 @@ import WebsiteLayout from '../../layouts/website'
 import { API } from '../../config'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-
+import Headermem from '../../components/Headermem'
 
 
 const Signup = () => {
@@ -13,10 +13,11 @@ const Signup = () => {
     const signup = (user) => {
         return fetch(`${API}/signup`, {
             method: "POST",
+            body: JSON.stringify(user),
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(user)
+          
         })
             .then(respone => respone.json())
             .catch(error => console.log(error))
@@ -51,7 +52,9 @@ const Signup = () => {
 
         return (
 
-            <form onSubmit={handleSubmit(onSubmit)} className="dk pd-5">
+     <>
+     <Headermem/>
+     <form onSubmit={handleSubmit(onSubmit)} className="dk pd-5">
                 <h1 className="px-6" >Đăng Kí</h1>
                 <div className="mb-3 ">
                     <label className="form-label" htmlFor="name" >Name</label>
@@ -81,6 +84,7 @@ const Signup = () => {
 
                 <button className="btn btn-primary">Signup</button>
             </form>
+     </>
 
         )
     }

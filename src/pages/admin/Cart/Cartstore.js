@@ -3,10 +3,11 @@ import { exists, list, total, quantity, remove, destroy } from "cart-localstorag
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
-
+import Headermem from "../../../components/Headermem";
 function Cart() {
   const { id } = useParams()
   const history = useHistory();
+  
   const DeleteAll = () => {
     const question = window.confirm("Bạn muốn xóa hết giỏ hàng ?")
     if (question) {
@@ -29,7 +30,8 @@ function Cart() {
   }
   const count = list().length
   return (
-
+    <div>
+<Headermem></Headermem>
     <section className="py-4 container">
       <div className="row justify-content-center">
         <div className="col-12">
@@ -64,6 +66,7 @@ function Cart() {
 
 
     </section>
+    </div>
   );
 }
 export default Cart;
