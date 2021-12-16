@@ -1,16 +1,15 @@
 import React, { useCallback, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import ProductApi from '../../../api/ProductApi';
 import CategoryApi from '../../../api/CategoryApi';
-import { Selector } from 'reselect';
-import{Form,Input,Button,selecte} from 'reactstrap'
-import Select from 'react-select'
+
+
 function AddProduct() {
-    let history = useHistory();
+    let history = useNavigate();
     let userId = localStorage.getItem("id");
-    const name=document.querySelector("#product-name")
+
     const [listcate, setlistcate] = useState([]);
     useEffect(() => {
         const listcate = async () => {
@@ -55,7 +54,7 @@ function AddProduct() {
         add.append("categoryId", data.categoryId);
         add.append("shipping", true);
         onAdd(add, userId);
-        history.push('/admin/search')
+        history('/admin/search')
     }
     return (
         <div>
@@ -65,7 +64,7 @@ function AddProduct() {
                 <input
                     type="text"
                     id="product-name"
-                  {...register('name', ({ required: true , pattern: /^[.*\S+.*]/ }))}
+                    {...register('name', ({ required: true, pattern: /^[.*\S+.*]/ }))}
                     className={`form-control ${errors.name ? "border border-danger" : ""}`}
 
                 />

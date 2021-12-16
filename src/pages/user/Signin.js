@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import WebsiteLayout from '../../layouts/website'
 import { API } from '../../config'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import { useForm } from 'react-hook-form'
 import { authenticate, signin } from '../../auth'
@@ -11,10 +11,10 @@ import Headermem from '../../components/Headermem'
 import { useDispatch } from 'react-redux'
 import { savetoken } from '../../redux/store/AuthSlide'
 const Signin = () => {
-    let history = useHistory();
-    const role=localStorage.getItem('role')
-    // let navigate=useNavigate()
-    const dispath=useDispatch();
+    let navigate = useNavigate();
+    const role = localStorage.getItem('role')
+    // let navigate=useNavigate ()
+    const dispath = useDispatch();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, seterror] = useState("");
     const [loading, setloading] = useState(false);
@@ -25,15 +25,15 @@ const Signin = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            
+
         })
             .then(respone => respone.json())
             .catch(error => console.log(error))
-    } 
+    }
     // const signin=async(user)=>{
-       
-            // await UserApi.signin(user)
-     
+
+    // await UserApi.signin(user)
+
     // }
 
 
@@ -48,21 +48,21 @@ const Signin = () => {
                     seterror(dataUser.error);
                     setloading(false);
                 } else {
-                        //   dispath(savetoken(dataUser))
-
-                    authenticate(dataUser, () => {
-                     
-                        if (role== 1) {
-
-                            setTimeout(() => {
-                                  history.push('/admin/search')
-                            },1000);
-                          
+                      dispath(savetoken(dataUser))
+                   
+                    // authenticate(dataUser, () => {
+                    //     console.log('huy',role);
+                        if (dataUser.user.role===1) {
+                       
+                                setTimeout(() => {
+                                    navigate("/admin/search")
+                                },1000);
+                           
                         }
-                        else if (dataUser.user.role == 0) {
-                            history.push('/')
+                        else if (dataUser.user.role===0) {
+                            navigate('/')
                         }
-                    })
+                    // })
                 }
             })
 
@@ -82,39 +82,39 @@ const Signin = () => {
     const SigninForm = () => {
 
         return (
-<>
-<Headermem/>
+            <>
+                <Headermem />
 
-<form onSubmit={handleSubmit(onSubmit)} className="dk ">
-                <h1 className="px-6" >Đăng Nhập</h1>
+                <form onSubmit={handleSubmit(onSubmit)} className="dk ">
+                    <h1 className="px-6" >Đăng Nhập</h1>
 
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="email" >Email</label>
-                    <input type="text" className="form-control"
-                        name="" id="email"
-                        aria-describedby="helpId" placeholder=""
-                        {...register('email') }
-                    />
-                </div>
-             
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="password" >password</label>
-                    <input type="password" className="form-control"
-                        name="" id="password"
-                        aria-describedby="helpId" placeholder=""
-                        {...register('password')}
-                    />
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="email" >Email</label>
+                        <input type="text" className="form-control"
+                            name="" id="email"
+                            aria-describedby="helpId" placeholder=""
+                            {...register('email')}
+                        />
+                    </div>
 
-                </div>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="password" >password</label>
+                        <input type="password" className="form-control"
+                            name="" id="password"
+                            aria-describedby="helpId" placeholder=""
+                            {...register('password')}
+                        />
 
-                <button className="btn btn-primary">Signin</button>
-                <div className="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
+                    </div>
 
-                <br />
-                <span>Bạn chưa có tài khoản  <Link to="/user">Đăng kí</Link></span>
+                    <button className="btn btn-primary">Signin</button>
+                    <div className="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-            </form>
-</>
+                    <br />
+                    <span>Bạn chưa có tài khoản  <Link to="/user">Đăng kí</Link></span>
+
+                </form>
+            </>
 
         )
     }

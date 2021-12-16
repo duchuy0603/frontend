@@ -20,7 +20,7 @@ const CategoryPage = () => {
     } catch (error) {
         console.log(error);
     }
-    }, [])
+    }, [products])
     const[listcate,setlistcate]=useState([])
     useEffect(() => {
     try {
@@ -32,7 +32,7 @@ const CategoryPage = () => {
     } catch (error) {
         console.log(error);
     }
-    }, [])
+    }, [listcate])
 const result=products.filter(x=>x.categoryId==id);
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import UserApi from '../api/UserApi'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,17 +13,17 @@ import { color } from '@mui/system';
 
 const User = () => {
   const data = list();
- 
+
   var name = localStorage.getItem("name");
- 
+
   const count = data.length;
-  const dispatch=useDispatch();
-  let history = useHistory()
+  const dispatch = useDispatch();
+  let history = useNavigate()
 
   async function dangxuat() {
- localStorage.clear();
+    localStorage.clear();
     await UserApi.signout();
-    history.push('/user/:id')
+    history('/user/:id')
   }
 
   return (

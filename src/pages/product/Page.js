@@ -24,7 +24,7 @@ const Page = () => {
         } catch (error) {
             console.log(error);
         }
-    }, [])
+    }, [product])
     const [listcate, setlistcate] = useState([])
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const Page = () => {
         } catch (error) {
             console.log(error);
         }
-    }, [])
+    }, [listcate])
     const [change, setchange] = useState(1);
 
 

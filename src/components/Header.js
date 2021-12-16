@@ -3,6 +3,7 @@ import Nav from './Nav';
 import Search from './Search';
 import UserAdmin from './UserAdmin';
 import Slide from './Slide';
+import { Outlet } from 'react-router';
 const Header = () => {
   return (
     <div>

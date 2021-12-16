@@ -1,11 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import { useState,useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { useState, useEffect } from 'react';
 import CategoryApi from '../../../api/CategoryApi';
 const Editcategory = () => {
-    let history = useHistory();
+    let history = useNavigate();
     let userId = localStorage.getItem("id")
     let { id } = useParams();
     const [listcate, setlistcate] = useState([]);
@@ -16,25 +16,25 @@ const Editcategory = () => {
         }
         listcate();
     }, [listcate])
-    const onEditCate=async(id,userId,cate)=>{
-      const{data}=  await CategoryApi.update(id,userId,cate);
-    
+    const onEditCate = async (id, userId, cate) => {
+        const { data } = await CategoryApi.update(id, userId, cate);
+
         setlistcate(data);
-     
+
     }
     const { 0: categorys } = listcate.filter(x => x._id === id);
-    const { register, handleSubmit, reset,setValue , formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
     const onSubmit = (data) => {
         const add = new FormData();
         add.append('name', data.name);
-        onEditCate(id, userId,add);
-      
-        history.push("/admin/listcate");
-       
-       
+        onEditCate(id, userId, add);
+
+        history("/admin/listcate");
+
+
     }
-   
- 
+
+
     return (
         <div>
             <h2>Edit Category</h2>
@@ -44,13 +44,13 @@ const Editcategory = () => {
 
                     <input type="text"
                         className={`form-control ${errors.name ? "boder border-danger" : ""}`}
-                   
-                   defaultValue={categorys?.name}
-                        {...register('name', { required: true ,min:0 ,max:999999999999, pattern: /^[.*\S+.*]/ })}
+
+                        defaultValue={categorys?.name}
+                        {...register('name', { required: true, min: 0, max: 999999999999, pattern: /^[.*\S+.*]/ })}
                     />
-               
+
                     {errors.name && <span className="text-warning">bạn chưa nhập tên</span>}
-                    <br/>
+                    <br />
                     <button type="submit" className="btn btn-primary">edit</button>
                 </div>
             </form>

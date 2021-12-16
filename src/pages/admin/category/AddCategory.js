@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useEffect } from 'react'
 import CategoryApi from '../../../api/CategoryApi'
@@ -9,7 +9,7 @@ import CategoryApi from '../../../api/CategoryApi'
 function AddCategory() {
     let userId = localStorage.getItem("id")
 
-    let history = useHistory();
+    let history = useNavigate();
     const [listcate, setlistcate] = useState([]);
     useEffect(() => {
         const listcate = async () => {
@@ -33,7 +33,7 @@ function AddCategory() {
         onAddCate(addcate, userId);
         //   const action=add(addcate,userId)
         //         dispatch(action);
-        history.push('/admin/listcate')
+        history('/admin/listcate')
 
     }
 
@@ -49,7 +49,7 @@ function AddCategory() {
                     className={`form-control ${errors.name ? "border border-danger" : ""}`}
 
                 />
-             {errors.name && <span className="text-warning">bạn chưa nhập tên hoặc nhập chưa đúng định dạng</span>}
+                {errors.name && <span className="text-warning">bạn chưa nhập tên hoặc nhập chưa đúng định dạng</span>}
                 <br />
                 <button type="submit" className="btn btn-primary"  >Add</button>
             </form>

@@ -5,8 +5,14 @@ import logo6 from '../image/logo6.jpg'
 import logo7 from '../image/logo7.jpg'
 import Headermem from '../components/Headermem'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 const HomePage = (props) => {
+  // const role=useSelector(state=>state.authlist.datauser)
+  
+  // console.log(role);
+ 
     return (
+
         <div className="container">
  
 

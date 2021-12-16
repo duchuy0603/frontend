@@ -1,23 +1,24 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import ProductApi from '../api/ProductApi';
-import { useHistory, useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
 
 var userId = localStorage.getItem('id')
-const history = useHistory
+
 function Search() {
   const [todos, setTodos] = useState([]);
 
+  const history = useNavigate();
   const { id } = useParams();
- 
-;  useEffect(() => {
-    
+
+  ; useEffect(() => {
+
     // didmount
     const listtodo = async () => {
       try {
-       
+
         const { data: product } = await ProductApi.getAll();
 
         setTodos(product);
@@ -27,9 +28,9 @@ function Search() {
       };
     }
     listtodo();
-    return () => {
-     
-    };
+    // return () => {
+
+    // };
     // didupdate
   }, [todos])
   // const [change, setchange] = useState(1);
@@ -52,7 +53,7 @@ function Search() {
   //     console.log(error);
   //   }
   // }, [change])
-  
+
   const onRemove = async (id, userId) => {
     await ProductApi.remove(id, userId);
     const newpro = todos.filter(x => x._id !== id);
@@ -123,7 +124,7 @@ function Search() {
       })
       }
 
-     
+
     </div>
   );
 

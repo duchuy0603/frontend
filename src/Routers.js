@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Children } from 'react'
 
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
   useParams
 } from "react-router-dom";
@@ -25,102 +25,99 @@ import Pagination from './Pagination';
 import Update from './pages/user/update';
 import Search from './components/Search';
 import Cart from '.././src/pages/admin/Cart/Cartstore'
-import { Redirect } from 'react-router';
-
+import { useNavigate } from 'react-router';
+import { useRoutes } from 'react-router';
+import { Navigate } from 'react-router';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router';
 // import SearchPro from './components/SearchPro';
-const role=localStorage.getItem("role");
-console.log(role);
+const routers =()=> {
+ 
+//   console.log('ccc',role);
+  function PrivateRoute({ children }) {  
+   const role=localStorage.getItem('role')
+     return role==1? children : <Navigate to="/user/:id" />;
+   }
+ return (
+  <BrowserRouter>
+  <Routes>
 
-
-const routers = (props => (
-
-  <Router>
-    <Switch>
-
-      <Route exact path="/admin/:path/:id?">
-        { role==1 &&
-          <AdminLayout>
-          <Switch>
-          <Route exact path="/admin/search" >
-              <Search {...props} />
+    <Route element={  
+      
+      <PrivateRoute><AdminLayout/></PrivateRoute>
+      }>
+  <Route  path="/admin/search" element={ <Search/>}>
+            
             </Route>
-            <Route exact path="/admin/dashboard"> 
-                    
-           
-              <AdminLayout />
-           
+            <Route  path="/admin/dashboard"> 
             </Route>
-            <Route exact path="/admin/listpro">
-              <ListPro  {...props} children={<ListPro />} />
+            <Route  path="/admin/listpro" element={  <ListPro   />}>
+            
             </Route>
-            <Route exact path="/admin/addproduct" >
-              <AddProduct {...props} />
+            <Route  path="/admin/addproduct" element={ <AddProduct  />}>
+             
             </Route>
-            <Route exact path="/admin/editproduct/:id" children={<EditProduct />}>
-              <EditProduct {...props} />
+            <Route  path="/admin/editproduct/:id" element={ <EditProduct  />} >
+             
             </Route>
-            <Route exact path="/admin/addcategory" >
-              <AddCategory {...props} />
-            </Route>
-            <Route exact path="/admin/listcate" children={<ListCate />} >
-              <ListCate {...props} />
-            </Route>
-            <Route exact path="/admin/editcategory/:id" children={<Editcategory />}>
-              <Editcategory {...props} />
-            </Route>
-            <Route exact path="/admin/Page/:id" children={<Pagination />}>
-              <Pagination {...props} />
-            </Route>
-            <Route exact path="/admin/update/:id" children={<update />}>
-              <Update {...props} />
-            </Route>
+            <Route  path="/admin/addcategory" element={<AddCategory  />} >
         
-            {/* <Route exact path="/admin/SearchPro" >
-              <SearchPro {...props} />
-            </Route> */}
-    
-          </Switch>
-        </AdminLayout>
-        }
-      </Route>
-      {/* website layout */}
-      <Route  >
-        <WebsiteLayout >
-
-          
-          <Switch>
-            <Route exact path="/" >
-              <HomePage  {...props} />
             </Route>
-            <Route exact path="/product" children={<Page />}>
-              <Page {...props} />
+            <Route  path="/admin/listcate" element={ <ListCate  />}  >
+            
             </Route>
-            <Route exact path="/category/:id">
-              <CategoryPage {...props} />
+            <Route  path="/admin/editcategory/:id" element={  <Editcategory  />} >
+            
             </Route>
-            <Route exact path="/user/:id" >
-              <Signin />
+            <Route  path="/admin/Page/:id"element={  <Pagination  />}>
+            
             </Route>
-            <Route exact path="/user" >
-              <Signup />
+            <Route  path="/admin/update/:id" element={ <Update  />} >
+             
             </Route>
-            <Route exact path="/cart" children={<Cart />} >
-              <Cart {...props} />
-            </Route>
-            <Route exact path="/product/:id" children={<ProductDetailPage />} >
-              <ProductDetailPage {...props} />
-            </Route>
-            <Route exact path="/product/:id"  >
-              <Pagination {...props} />
-            </Route>
-          
-          </Switch>
-        </WebsiteLayout>
-       
-      </Route>
-      <Redirect to="/user/:id"/>
-    </Switch>
+ 
+      
+          {/* <Route  path="/admin/SearchPro" >
+            <SearchPro  />
+          </Route> */}
   
-  </Router>
-))
+    
+      
+    </Route>
+    {/* website layout */}
+    <Route element={<WebsiteLayout />} >
+          <Route  path="/" element={ <HomePage   />} >
+           
+          </Route>
+          <Route  path="/product" element={  <Page  />} >
+          
+          </Route>
+          <Route  path="/category/:id" element={  <CategoryPage  />}>
+          
+          </Route>
+          <Route  path="/user/:id" element={  <Signin />} >
+          
+          </Route>
+          <Route  path="/user" element={ <Signup />}>
+         
+          </Route>
+          <Route  path="/cart" element={ <Cart  />}  >
+           
+          </Route>
+          <Route  path="/product/:id" element={ <ProductDetailPage  />}  >
+           
+          </Route>
+          <Route  path="/product/:id" element={<Pagination  />} >
+      
+          </Route>
+        
+     
+     
+    </Route>
+  
+    </Routes>
+
+</BrowserRouter>
+ )
+}
 export default routers;
