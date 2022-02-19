@@ -11,7 +11,7 @@ const ProductApi = {
         return axiosClient.get(url);
     },
     getPage() {
-        const url = `/news/:page`;
+        const url = `/news/page`;
         return axiosClient.get(url);
     },
 
@@ -43,8 +43,8 @@ const ProductApi = {
     //         headers: { 'Authorization': 'Bearer ' + token }
     //     });
     // },
-    remove(id,userId) {
-        const url = `/products/${id}/${userId}`;
+    remove(id) {
+        const url = `/products/${id}`;
         return axiosClient.delete(url);
     },
     removeAll(userId) {

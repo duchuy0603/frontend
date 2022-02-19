@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import Headermem from './../../components/Headermem';
-
+import { Trans } from 'react-i18next';
 const CategoryPage = () => {
 
     const {id}=useParams();
@@ -37,7 +37,7 @@ const result=products.filter(x=>x.categoryId==id);
 
     return (
         <div>
-            <Headermem/>
+          <Headermem></Headermem>
             <div className="row cate">
             {/* <div className="col-md-3">
                     {listcate.map((btn, index) => (
@@ -46,11 +46,11 @@ const result=products.filter(x=>x.categoryId==id);
                     ))}
                 </div> */}
                     <div className="col-md-3 danhmuc">
-                <h4>Danh Mục</h4>
+                <h4><Trans>Category</Trans></h4>
                     {listcate.map((btn, index) => (
                            
                         
-                           <NavLink activeClassName className="Link mt-1" to={`/category/${btn._id}`}><div className="itemlist" key={index}>{btn.name}</div></NavLink> 
+                           <NavLink activeClassName className="Link mt-1" to={`/category/${btn._id}`}><div className="itemlist" key={index}><Trans>{btn.name}</Trans></div></NavLink> 
                         
                     ))}
                 </div>

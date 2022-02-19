@@ -4,12 +4,28 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import ProductApi from '../../../api/ProductApi';
 import CategoryApi from '../../../api/CategoryApi';
-
+import { RMIUploader } from "react-multiple-image-uploader";
 
 function AddProduct() {
     let history = useNavigate();
     let userId = localStorage.getItem("id");
-
+    console.log('huybaby',userId);
+    const [visible, setVisible] = useState(false);
+    const handleSetVisible = () => {
+      setVisible(true);
+    };
+    const hideModal = () => {
+      setVisible(false);
+    };
+    const onUpload = (data) => {
+      console.log("Upload files", data);
+    };
+    const onSelect = (data) => {
+      console.log("Select files", data);
+    };
+    const onRemove = (id) => {
+      console.log("Remove image id", id);
+    };
     const [listcate, setlistcate] = useState([]);
     useEffect(() => {
         const listcate = async () => {
@@ -93,7 +109,17 @@ function AddProduct() {
                     className={`form-control ${errors.photo ? "border border-danger" : ""}`}
                     id="product-image"
                 />
-                {errors.photo && <span className="text-warning">chưa có ảnh</span>}
+     
+      {/* <button onClick={handleSetVisible}>Show Me</button>
+      <RMIUploader
+      isOpen={visible}
+      hideModal={hideModal}
+      onSelect={onSelect}
+      onUpload={onUpload}
+      onRemove={onRemove}
+      /> */}
+  
+         
                 <br />
                 <label>description</label>
                 <textarea
