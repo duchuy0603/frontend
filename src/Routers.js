@@ -21,7 +21,7 @@ import WebsiteLayout from './layouts/website';
 import Signin from '././pages/user/Signin'
 import Signup from '././pages/user/Signup'
 import Page from './pages/product/Page';
-import Pagination from './Pagination';
+
 import Update from './pages/user/update';
 import Search from './components/Search';
 import Cart from '.././src/pages/admin/Cart/Cartstore'
@@ -69,9 +69,7 @@ const routers =()=> {
             <Route  path="/admin/editcategory/:id" element={  <Editcategory  />} >
             
             </Route>
-            <Route  path="/admin/Page/:id"element={  <Pagination  />}>
-            
-            </Route>
+          
             <Route  path="/admin/update/:id" element={ <Update  />} >
              
             </Route>
@@ -89,7 +87,7 @@ const routers =()=> {
           <Route  path="/" element={ <HomePage   />} >
            
           </Route>
-          <Route  path="/product" element={  <Page  />} >
+          <Route  path="/productpage/:page" element={  <Page  />} >
           
           </Route>
           <Route  path="/category/:id" element={  <CategoryPage  />}>
@@ -106,9 +104,6 @@ const routers =()=> {
           </Route>
           <Route  path="/product/:id" element={ <ProductDetailPage  />}  >
            
-          </Route>
-          <Route  path="/product/:id" element={<Pagination  />} >
-      
           </Route>
         
      

@@ -10,21 +10,44 @@ i18n
     resources: {
       en: {
         translations: {
-          "To get started, edit <1>src/App.js</1> and save to reload.":
-            "To get started, edit <1>src/App.js</1> and save to reload.",
-          "Welcome to React": "Welcome to React and react-i18next",
-          welcome: "Hello <br/> <strong>World</strong>"
+          "Home":
+            "Home",
+          "Page": "Page",
+        'Category':"Category",
+        'Signin':"Signin ",
+        "Signup":"Signup",
+        "Signout":"Signout",
+        "Login":"Login",
+        "Total items":"Total items",
+        "sneaker":"sneaker",
+        "Pant":"Pant",
+        "Clother":"Clother",
+        "Total Price":"Total Price",
         }
       },
-      de: {
+      vi: {
         translations: {
-          "To get started, edit <1>src/App.js</1> and save to reload.":
-            "Starte in dem du, <1>src/App.js</1> editierst und speicherst.",
-          "Welcome to React": "Willkommen bei React und react-i18next"
+          "Home":
+            "Trang Chủ",
+            "Category":'Danh Mục',
+          "Page": "Trang",
+          "Pant":"Quần",
+          "sneaker":'Giày',
+          
+          'Clother':'Áo',
+          'Signin':"Đăng Nhập",
+        "Signup":"Đăng Kí",
+      "Signout":"Đăng Xuất",
+      "Login":"Đăng Nhập",
+      "Delete":"xóa",
+      "Total Price":"Tổng Tiền",
+      "Total items":"Tổng Sản Phẩm",
+      "Clear Cart":"Xóa Giỏ Hàng"
+
         }
       }
     },
-    fallbackLng: "en",
+    fallbackLng: "vi",
     debug: true,
 
     // have a common namespace used around the full app

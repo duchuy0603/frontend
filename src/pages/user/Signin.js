@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import WebsiteLayout from '../../layouts/website'
 import { API } from '../../config'
 import { useNavigate } from 'react-router'
-
 import { useForm } from 'react-hook-form'
 import { authenticate, signin } from '../../auth'
 import { Link } from 'react-router-dom'
@@ -10,6 +9,7 @@ import UserApi from '../../api/UserApi'
 import Headermem from '../../components/Headermem'
 import { useDispatch } from 'react-redux'
 import { savetoken } from '../../redux/store/AuthSlide'
+import { Trans } from 'react-i18next'
 const Signin = () => {
     let navigate = useNavigate();
     const role = localStorage.getItem('role')
@@ -86,7 +86,7 @@ const Signin = () => {
                 <Headermem />
 
                 <form onSubmit={handleSubmit(onSubmit)} className="dk ">
-                    <h1 className="px-6" >Đăng Nhập</h1>
+                    <h1 className="px-6" ><Trans>Login</Trans></h1>
 
                     <div className="mb-3">
                         <label className="form-label" htmlFor="email" >Email</label>
