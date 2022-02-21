@@ -6,11 +6,11 @@ import { Outlet } from 'react-router'
 const WebsiteLayout = ({ children }) => {
     return (
         <div>
-   
+   <Headermem/>
            <body>
        
            { children }
-           
+          
            </body>
            <Outlet/>
             <Footer />

@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { exists, list, total, quantity, remove, destroy } from "cart-localstorage";
 import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
 import { color } from '@mui/system';
-
+import { Trans } from 'react-i18next';
 
 const User = () => {
   const data = list();
@@ -38,8 +38,8 @@ const User = () => {
             </AccountCircleIcon>
           </div>
           <div className="dropdown-content">
-            <NavLink className="nav-link" to="/user/:id">signin</NavLink>
-            <NavLink className="nav-link " to="/user/:id" onClick={() => dangxuat()}>signout</NavLink>
+            <NavLink className="nav-link" to="/user/:id"><Trans>Signin</Trans></NavLink>
+            <NavLink className="nav-link " to="/user/:id" onClick={() => dangxuat()}><Trans>Signout</Trans></NavLink>
 
           </div>
         </div>

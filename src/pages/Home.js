@@ -6,17 +6,24 @@ import logo7 from '../image/logo7.jpg'
 import Headermem from '../components/Headermem'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useState } from 'react'
+// import { useTranslate } from 'react-redux-multilingual'
 const HomePage = (props) => {
-  // const role=useSelector(state=>state.authlist.datauser)
-  
-  // console.log(role);
+// const trans=useTranslate();
+
+const   [tran,settran ]=useState();
+useEffect(() => {
+
+}, [])
+
  
     return (
 
         <div className="container">
  
 
-<Headermem/>
+ <Headermem></Headermem>
   {/* Marketing messaging and featurettes
 ================================================== */}
   {/* Wrap the rest of the page in another container to center all the content. */}

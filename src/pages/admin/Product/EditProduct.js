@@ -35,8 +35,23 @@ function EditProduct() {
 
         }
         listcate();
-
+      
     }, [])
+    
+    useEffect(() => {
+     function setEdit(){
+        setValue("name", products?.name); 
+        setValue("price", products?.price); 
+        setValue("photo", products?.photo);  
+        setValue("description", products?.description); 
+        setValue("quantity", products?.quantity);  
+        setValue("status", products?.status);
+        setValue("categoryId", products?.categoryId); 
+        setValue("shipping", products?.shipping); 
+     
+      }
+      setEdit();
+    },[])
 
    
     let userId = localStorage.getItem('id')
@@ -59,16 +74,16 @@ function EditProduct() {
         history('/admin/search')
 
     }
-    const setEdit = () => {
-        setValue("name", products?.name); // 
-        setValue("price", products?.price); // 
-        setValue("photo", products?.photo[0]); // 
-        setValue("description", products?.description); // 
-        setValue("quantity", products?.quantity); // 
-        setValue("status", products?.status); // setValue("price", products.price); // 
-        setValue("categoryId", products?.categoryId); // 
-        setValue("shipping", products?.shipping); // 
-    }
+//      const setEdit = () => {
+//      setValue("name", products?.name); 
+//      setValue("price", products?.price); 
+//      setValue("photo", products?.photo); 
+//      setValue("description", products?.description); 
+//      setValue("quantity", products?.quantity); 
+//      setValue("status", products?.status);
+//      setValue("categoryId", products?.categoryId); 
+//      setValue("shipping", products?.shipping); 
+//  }
 
     return (
         <div>
@@ -78,7 +93,7 @@ function EditProduct() {
                 <input
                     type="text"
 
-                    placeholder={products?.name}
+                  
                     id="product-name"
 
                     {...register('name', { required: true, pattern: /^[.*\S+.*]/ })}
@@ -91,7 +106,7 @@ function EditProduct() {
 
                 <input
                     type="number"
-                    placeholder={products?.price}
+                  
                     className="form-control"
 
                     {...register('price', { required: true, min: 1, max: 999999999999999999 })}
@@ -118,7 +133,7 @@ function EditProduct() {
                 <textarea
 
                     className="form-control"
-                    placeholder={products?.description}
+               
                     {...register('description', { required: true })}
 
                     className={`form-control ${errors.description ? "border border-danger" : ""}`}
@@ -130,7 +145,7 @@ function EditProduct() {
                 <input
                     type="number"
                     className="form-control"
-                    placeholder={products?.quantity}
+                 
                     {...register('quantity', { required: true, min: 1, max: 99999999 })}
 
                     className={`form-control ${errors.quantity ? "border border-danger" : ""}`}
@@ -141,7 +156,7 @@ function EditProduct() {
                 <br />
                 <label>Category</label>
                 <select className="form-control"
-                    placeholder={products?.categoryId}
+                    // placeholder={products?.categoryId}
                     id="product-category"
                     {...register('categoryId', { required: true })}>
                     {/* <option value={products?.id}>{products.name}</option> */}
@@ -170,6 +185,7 @@ function EditProduct() {
                 <br />
 
                 <button type="submit" className="btn btn-primary"  >Add</button>
+                {/* <button type="submit" onClick={()=>setEdit()} className="btn btn-primary"  >dit</button> */}
             </form>
         </div>
     )

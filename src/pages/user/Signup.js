@@ -4,7 +4,7 @@ import { API } from '../../config'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 import Headermem from '../../components/Headermem'
-
+import { Trans } from 'react-i18next'
 
 const Signup = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -55,7 +55,7 @@ const Signup = () => {
      <>
      <Headermem/>
      <form onSubmit={handleSubmit(onSubmit)} className="dk pd-5">
-                <h1 className="px-6" >Đăng Kí</h1>
+                <h1 className="px-6" ><Trans>Đăng Kí</Trans></h1>
                 <div className="mb-3 ">
                     <label className="form-label" htmlFor="name" >Name</label>
                     <input type="text" className={`form-control ${errors.name ? "border border-danger" : ""}`}

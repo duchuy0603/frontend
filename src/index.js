@@ -3,19 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
 import store from './redux/store';
-
 import { Provider } from 'react-redux';
-import i18n from './trans/i18n';
 import { I18nextProvider } from 'react-i18next';
+import i18n from './trans/i18n';
 import './trans/i18n'
+import { CartProvider } from "react-use-cart";
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-   
-      <App />
- 
+    <I18nextProvider i18n={i18n}>
+    <CartProvider> 
+       <App />
+       </CartProvider>
+      </I18nextProvider>
   </React.StrictMode>
   </Provider>,
   document.getElementById('root')

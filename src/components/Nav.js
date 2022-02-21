@@ -5,10 +5,13 @@ import { authenticate } from '../auth';
 import { Link } from 'react-router-dom';
 import { ReactDOM } from 'react-dom';
 
+import { changeLanguage } from 'i18next';
 const Nav = () => {
     var user=localStorage.getItem('role');
     return (
         <ul className="navbar-nav me-auto mb-2 mb-md-0">
+             <button onClick={() => changeLanguage("vi")}>vi</button>
+    <button onClick={() => changeLanguage("en")}>en</button>
             {/* <li className="nav-item">
                 <Link className="nav-link active"  aria-current="page" to="/">Home</Link>
             </li> */}
